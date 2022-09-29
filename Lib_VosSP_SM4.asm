@@ -37,9 +37,9 @@ ProgSP_base      segment  CODE
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse du périphérique d’entrée
-; Valeur retournée: R7 : contient la valeur du code lu (sur les 6 bits de poids faible). 
-; Registres modifiés: aucun
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse du pÃ©riphÃ©rique dâ€™entrÃ©e
+; Valeur retournÃ©e: R7 : contient la valeur du code lu (sur les 6 bits de poids faible). 
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Read_code:	
@@ -61,9 +61,9 @@ _Read_code:
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse du périphérique d’entrée
-; Valeur retournée: Bit Carry  0: pas de détection / 1: véhicule détecté 
-; Registres modifiés: aucun
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse du pÃ©riphÃ©rique dâ€™entrÃ©e
+; Valeur retournÃ©e: Bit Carry  0: pas de dÃ©tection / 1: vÃ©hicule dÃ©tectÃ© 
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Read_Park_IN:	
@@ -81,9 +81,9 @@ _Read_Park_IN:
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse du périphérique d’entrée
-; Valeur retournée: Bit Carry  0: pas de détection / 1: véhicule détecté 
-; Registres modifiés: aucun
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse du pÃ©riphÃ©rique dâ€™entrÃ©e
+; Valeur retournÃ©e: Bit Carry  0: pas de dÃ©tection / 1: vÃ©hicule dÃ©tectÃ© 
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Read_Park_OUT:
@@ -101,19 +101,19 @@ _Read_Park_OUT:
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse CODE de la table de conversion
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse CODE de la table de conversion
 ;                                            "Display_7S"
-; Paramètres d'entrée:  R5  – Valeur 4 bits à convertir (4bits de poids faible)
-; Valeur retournée: R7 - Code 7 segments (Bit 0-Segment a __ Bit6-Segment g)
-; Registres modifiés: aucun
+; ParamÃ¨tres d'entrÃ©e:  R5  â€“ Valeur 4 bits Ã  convertir (4bits de poids faible)
+; Valeur retournÃ©e: R7 - Code 7 segments (Bit 0-Segment a __ Bit6-Segment g)
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Decod_BIN_to_BCD:	
 					Push ACC
-					;recuperation adresse
+					;recupÃ©ration adresse
 					mov DPH,R6
 					mov DPL,R7
-					; on mets à 0 les 4 bits de poids forts pour garder que ceux de poids faibles
+					; on mets Ã  0 les 4 bits de poids forts pour garder que ceux de poids faibles
 					; ACC de 00h a 0FH
 					mov A,R5
 					CLR C
@@ -121,14 +121,14 @@ _Decod_BIN_to_BCD:
 					mov ACC.6,C
 					mov ACC.5,C
 					mov ACC.4,C
-					;on cherche l'adresse du code coresspondant à la valeur dans display
-					;on ajoute a la valeur de DPTR la valeur des bits de poids faibles
+					;on cherche l'adresse du code coresspondant Ã  la valeur dans display
+					;on ajoute Ã  la valeur de DPTR la valeur des bits de poids faibles
 					ADD A,DPL
 					mov DPL,A
 					mov A,DPH
 					ADDC A,#0
 					mov DPH,A
-					;on recupere l'information contenu dans display
+					;on recupÃ¨re l'information contenu dans display
 					mov A,#0
 					movc A,@A+DPTR
 					mov R7,A
@@ -142,19 +142,19 @@ _Decod_BIN_to_BCD:
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse du périphérique de sortie
-; Paramètre d’entrée :  R5 – Code 7 segments (les 7 bits de poids faible)
-; Paramètre d’entrée :  R3 – Code LED : si 0, LED éteinte, si non nul : LED allumée
-; Valeur retournée: R7 : contient une recopie de la valeur envoyée au périphérique de sortie. 
-; Registres modifiés: aucun
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse du pÃ©riphÃ©rique de sortie
+; ParamÃ¨tre dâ€™entrÃ©e :  R5 â€“ Code 7 segments (les 7 bits de poids faible)
+; ParamÃ¨tre dâ€™entrÃ©e :  R3 â€“ Code LED : si 0, LED Ã©teinte, si non nul : LED allumÃ©e
+; Valeur retournÃ©e: R7 : contient une recopie de la valeur envoyÃ©e au pÃ©riphÃ©rique de sortie. 
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Display:
 			Push ACC
-			;recuperation adresse
+			;recupÃ©ration adresse
 			mov DPH,R6
 			mov DPL,R7
-			;Verif LED allumee ou pas
+			;Verif LED allumÃ©e ou pas
 			mov A,R5
 			CJNE R3,#0,LED_Allumee
 			CLR C
@@ -177,11 +177,11 @@ _Display:
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse de Tab_code
-; Paramètre d’entrée :  R5  – Code à vérifier (sur 6 bits)
-; Valeur retournée: R7 : non nul, il retourne la position du code trouvé dans la table,
-;                        nul, il indique que le code n’a pas été trouvé dans la table.
-; Registres modifiés: aucun
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse de Tab_code
+; ParamÃ¨tre dâ€™entrÃ©e :  R5  â€“ Code Ã  vÃ©rifier (sur 6 bits)
+; Valeur retournÃ©e: R7 : non nul, il retourne la position du code trouvÃ© dans la table,
+;                        nul, il indique que le code nâ€™a pas Ã©tÃ© trouvÃ© dans la table.
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Test_Code:
@@ -192,10 +192,10 @@ _Test_Code:
 			mov A,R1
 			Push ACC
 			
-			;initialise DPTR avec la première adresse de Tab_code
+			;initialise DPTR avec la premiÃ¨re adresse de Tab_code
 			mov DPH,R6
 			mov DPL,R7
-			;on recupere l'info sur le nombre de code contenu par Tab_code
+			;on recupÃ¨re l'info sur le nombre de code contenu par Tab_code
 			mov A,#0
 			movc A,@A+DPTR
 			mov R0,A ; R0 contient nb data dans Tab_code
@@ -203,24 +203,24 @@ _Test_Code:
 			Verif_code_in:
 				INC DPTR
 				INC R1
-				;on verifie qu'on est tjs dans Tab_code
+				;on vÃ©rifie qu'on est tjs dans Tab_code
 				mov A,R0
 				ADD A,#1h
 				SUBB A,R1
 				JZ Code_non_trouve ; si on est sortie, alors notre code 
-				;n'existe pas dans nos donnees
-				;recupere donnes et sauvegarde dans R7
+				;n'existe pas dans nos donnÃ©es
+				;recupÃ¨re donnÃ©es et sauvegarde dans R7
 				mov A,#0
 				movc A,@A+DPTR
 				mov R7,A
-				;on verifie si c'est le bon sinon on continue de chercher
+				;on vÃ©rifie si c'est le bon sinon on continue de chercher
 				SUBB A,R5 
 				JNZ Verif_code_in 
 				Jmp By
 				Code_non_trouve:
 					mov R7,#0 ;enregistrement de l'erreur
 			By:
-			;recup Data
+			;rÃ©cup Data
 			Pop ACC
 			mov R1,A
 			Pop ACC
@@ -234,11 +234,11 @@ _Test_Code:
 ;
 ; Description: 
 ;
-; Paramètres d'entrée:  R6 (MSB)- R7 (LSB) – Adresse de Tab_histo
-; Paramètre d’entrée :  R5 – Code à enregistrer
-; Valeur retournée: R7 : R7 : non nul, il retourne le nombre d’enregistrements,
+; ParamÃ¨tres d'entrÃ©e:  R6 (MSB)- R7 (LSB) â€“ Adresse de Tab_histo
+; ParamÃ¨tre dâ€™entrÃ©e :  R5 â€“ Code Ã  enregistrer
+; Valeur retournÃ©e: R7 : R7 : non nul, il retourne le nombre dâ€™enregistrements,
 ;                             nul, il indique que la table est pleine (100 enregistrements). 
-; Registres modifiés: aucun
+; Registres modifiÃ©s: aucun
 ;******************************************************************************    
 
 _Stockage_Code:
@@ -247,7 +247,7 @@ _Stockage_Code:
 				mov A,R0
 				Push ACC
 				
-				;recup donnees
+				;rÃ©cup donnÃ©es
 				mov DPH,R6
 				mov DPL,R7
 				movx A,@DPTR
@@ -257,13 +257,13 @@ _Stockage_Code:
 				SUBB A,#64h
 				JZ Trop_plein ; si table est pleine, on renvoie l'ereur
 				
-				;incrementation index et envoie dans XDATA
+				;incrÃ©mentation index et envoie dans XDATA
 				INC R0 
 				mov A,R0
 				movx @DPTR,A
 				
-				;on ajoute à DPTR la valeur de l'index pour ranger 
-				;le code apres la derniere entree
+				;on ajoute Ã  DPTR la valeur de l'index pour ranger 
+				;le code aprÃ¨s la derniere entrÃ©e
 				mov A,R0
 				ADD A,DPL
 				mov DPL,A
@@ -271,7 +271,7 @@ _Stockage_Code:
 				ADDC A,DPH
 				mov DPH,A
 				
-				;envoie des donnes dans X_DATA
+				;envoie des donnÃ©es dans X_DATA
 				mov A,R5
 				movx @DPTR,A
 				
@@ -284,7 +284,7 @@ _Stockage_Code:
 					mov R7,#0
 				
 				Tschuss:
-				;recup donees
+				;rÃ©cup donnÃ©es
 				Pop ACC
 				mov R0,A
 				Pop ACC
