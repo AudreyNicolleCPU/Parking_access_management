@@ -52,7 +52,9 @@ La sortie du parking se fait selon la séquence suivante :
 
 A tout moment, l’accès au parking pourra être invalidé. Cette interdiction d’accès sera assurée par action sur un bouton poussoir. L’accès sera de nouveau autorisé après avoir entré le code de réarmement du système (valeur 00) sur le boitier de saisie du code d’entrée. **En pratique : c’est l’interruption externe INT7 (reliée à un bouton poussoir sur la carte d’évaluation) qui provoquera l’arrêt d’urgence.**
 
+## Lecture du Projet
 
+Vous pouvez exécuter le projet avec le fichier Proj_TP4_SM4.uproj sous mircoVision. Sinon vous pouvez ouvrir les programmes assembleur en fichier texte.
 
 *--English--*
 
@@ -104,3 +106,8 @@ Exit from the car park takes place in the following sequence:
 ### Emergency stop
 
 At any time, access to the car park can be disabled. This access prohibition will be ensured by pressing a push button. Access will be authorised again after entering the system reset code (value 00) on the entry code box. **In practice: it is the external interrupt INT7 (connected to a push button on the evaluation board) that will cause the emergency stop.**
+
+
+##Project
+
+You can run the project with the file Proj_TP4_SM4.uproj under mircoVision. Alternatively you can open the assembler programs as text files.
