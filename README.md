@@ -1,6 +1,7 @@
 # Parking_access_management
 
-*Français*
+
+*--Français--*
 
 ## Cahier des charges
 *Remarque préliminaire : Ce cahier des charges est volontairement simplifié. Une application réelle serait un tout petit peu plus complexe….  Néanmoins le principe de conception reste le même.*
@@ -49,11 +50,11 @@ La sortie du parking se fait selon la séquence suivante :
 
 ### Arrêt d’urgence
 
-A tout moment, l’accès au parking pourra être invalidé. Cette interdiction d’accès sera assurée par action sur un bouton poussoir. L’accès sera de nouveau autorisé après avoir entré le code de réarmement du système (valeur 00) sur le boitier de saisie du code d’entrée. **En pratique : c’est l’interruption externe INT7 (reliée à un bouton poussoir sur la carte d’évaluation) qui provoquera l’arrêt d’urgence.
-**
+A tout moment, l’accès au parking pourra être invalidé. Cette interdiction d’accès sera assurée par action sur un bouton poussoir. L’accès sera de nouveau autorisé après avoir entré le code de réarmement du système (valeur 00) sur le boitier de saisie du code d’entrée. **En pratique : c’est l’interruption externe INT7 (reliée à un bouton poussoir sur la carte d’évaluation) qui provoquera l’arrêt d’urgence.**
 
 
-*English*
+
+*--English--*
 
 ## Terms of reference
 *Preliminary remark: This specification is deliberately simplified. A real application would be a little bit more complex....  Nevertheless, the design principle remains the same*.
