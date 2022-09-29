@@ -56,13 +56,13 @@ Prog_base      segment  CODE
 Tab_code: DB 0Ah,01h,02h,04h,08h,10h,20h,03h,06h,0CH,18H,30H,07h,0Eh,1CH,38H									   
 Display_7S: DB 040h,079h,024h,030h,019h,012h,002h,078h,000h,010h,008h,003h,046h,021h,006h,00Eh
 ;******************************************************************************
-;Initialisations de p�riph�riques - Fonctionnalit�s Microcontroleur
+;Initialisations de périphériques - Fonctionnalités Microcontroleur
 ;******************************************************************************
 Start_pgm:
         mov   sp,#?STACK-1   ; Initialisation de la pile
         call Init_pgm        ; Appel SP de configuration du processeur
-		mov  R6,#0B7H        ; Passage des param�tres pour l'appel de  Config_Timer3_BT
-		mov  R7,#0EDH;       ; Valeur pass�e: 0B7EDH pour un p�riode timer3 de 10mS 
+		mov  R6,#0B7H        ; Passage des paramètres pour l'appel de  Config_Timer3_BT
+		mov  R7,#0EDH;       ; Valeur passée: 0B7EDH pour un période timer3 de 10mS 
 		CALL Config_Timer3_BT ; Configuration du timer 3
 		CALL Config_INT7 ; Configuration de INT7
 		
@@ -77,19 +77,19 @@ Start_pgm:
 ;******************************************************************************
 Main:
 		;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		;on verifie s'il y a une interruption INT7
+		;on vérifie s'il y a une interruption INT7
 		SETB C
 		mov A,R2
 		ANL C,ACC.0
 		JC Main_INT7
 		
 		;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		;on verifie s'il y a une voiture entrante ou sortante pour la premiere detection
+		;on vérifie s'il y a une voiture entrante ou sortante pour la première détection
 		SETB C
 		mov A,R2
 		ANL C,ACC.1
 		JC _Voiture_presente_1
-		;on verifie si voiture entrante ou pas
+		;on vérifie si voiture entrante ou pas
 		SETB C
 		ANL C,ACC.2
 		JC Affichage_entrante
@@ -97,7 +97,7 @@ Main:
 		Jmp Affichage
 		
 		;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		;execution de l'interruption
+		;exécution de l'interruption
 		Main_INT7:
 			CALL _Read_Code
 			SUBB A,R7
@@ -105,29 +105,29 @@ Main:
 			Jmp Main
 				
 		;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		;Il y a une voiture pour la premiere fois
+		;Il y a une voiture pour la première fois
 		; voiture entrante ?
 		_Voiture_presente_1:
-			;on remet � 0 la pr�sence de la premiere fois R2.1
+			;on remet à 0 la présence de la première fois R2.1
 			CLR C
 			mov A,R2
 			ANL C,ACC.1
-			;on verifie si voiture entrante ou pas
+			;on vérifie si voiture entrante ou pas
 			SETB C
 			ANL C,ACC.2
 			JC _Voiture_entrante
 			;on a donc une voiture sortante 
-			;on signal � Timer qu'on a une car_IN
+			;on signal à Timer qu'on a une car_IN
 			mov A,R2
 			SETB ACC.3
 			mov R2,A
-			;on d�cr�mente l'affichage des places
+			;on décrémente l'affichage des places
 			mov DPTR,#Nb_Place
 			movx A,@DPTR
 			DEC A
 			movx @DPTR,A
 			
-			;redirection verrs l'affichage
+			;redirection vers l'affichage
 			Jmp Affichage
 		
 		_Voiture_entrante:
@@ -147,7 +147,7 @@ Main:
 					CLR A
 					SUBB A,R7
 					JZ _Init_Clignotement
-					;recup nombre de place
+					;récup nombre de place
 					mov DPTR,#Nb_place
 					movx A,@DPTR
 					CJNE A,#08h,Entrante_ok
@@ -190,12 +190,12 @@ Main:
 		;Affichage
 		;Pour voiture entrante
 		Affichage_entrante:
-					;on verfie si elle doit clignoter
+					;on vérifie si elle doit clignoter
 					SETB C
 					mov A,R2
 					ANL C,ACC.5
 					JC LED_Clignotte
-					Jmp Affichage ; sinon on afficher direct, LED deja allumee avant lors de la premiere lecture
+					Jmp Affichage ; sinon on affiche direct, LED déjà allumée avant lors de la première lecture
 					
 					LED_Clignotte:
 						CLR A 
@@ -237,7 +237,7 @@ ISR_Timer3:
 		MOV TMR3CN,A
 	    
 		;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-		;on verifie si on est entrain de compter pour les LED
+		;on vérifie si on est entrain de compter pour les LED
 		SETB C
 		mov A,R2
 		ANL C,ACC.4
@@ -248,21 +248,21 @@ ISR_Timer3:
 		
 		;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		;on est pas entrain de compter
-		;on verifie s'il y a une voiture
+		;on vérifie s'il y a une voiture
 		
 		;initialisation _Read_Park_IN
 		mov R6,#40h
 		mov R7,#00h
 		CALL _Read_Park_IN
 		mov A,#1h
-		ANL C,ACC.0  ;verification voiture presente
+		ANL C,ACC.0  ;vérification voiture presente
 		JC _Car_IN
 		;initialisation _Read_Park_OUT
 		mov R6,#60h
 		CALL _Read_Park_OUT
 		mov A,#0
 		SETB Acc.0
-		ANL C,Acc.0 ;verification voiture presente
+		ANL C,Acc.0 ;vérification voiture presente
 		JC _Car_OUT
 		Jmp End_Timer3
 		
@@ -283,14 +283,14 @@ ISR_Timer3:
 				SETB ACC.3
 				mov R2,A
 				Jmp _Commun_IN_OUT	
-				mov R0,#0 ; si aucune voiture entrante ou sortante on reinitailise R0
+				mov R0,#0 ; si aucune voiture entrante ou sortante on réinitailise R0
 		
 		_Commun_IN_OUT:
-				;on verfie qu'on ne la lit qu'une fois
+				;on vérifie qu'on ne la lit qu'une fois
 				;SETB R0.0
 				mov A,R0
 				SETB ACC.0
-				;on verifie R0.0 = 1 et R0.1 =0 (premiere lecture )
+				;on vérifie R0.0 = 1 et R0.1 =0 (premiere lecture )
 				SETB C
 				ANL C,/ACC.1
 				RL A
@@ -311,7 +311,7 @@ ISR_Timer3:
 		;Organisation Compteur : R4 = valeurs les plus hautes, R1 = valeurs les plus basses
 		; exemple : on compte 4 sec soit 400ms soit 400 timer3 donc R4 = 144 et R1 = 256
 		LED: 
-			;on verifie si R4 est vide
+			;on vérifie si R4 est vide
 			CLR A
 			SUBB A,R4
 			JZ _R1_Compte
@@ -327,7 +327,7 @@ ISR_Timer3:
 											
 		
 		_Fin_Comptage:
-				;reinitialisation et sauvegarde du bit R2.0, bit de INT7 
+				;réinitialisation et sauvegarde du bit R2.0, bit de INT7 
 				mov A,R2
 				mov C,ACC.0
 				mov A,#0
@@ -359,7 +359,7 @@ ISR_INT7:
        PUSH PSW
 	   PUSH ACC
 	   
-	   ;on met le bit 0 de R2 � 1 pour signaler une interruption au main
+	   ;on met le bit 0 de R2 à 1 pour signaler une interruption au main
 	   mov A,R2
 	   SETB ACC.0
 	   mov R2,A	
