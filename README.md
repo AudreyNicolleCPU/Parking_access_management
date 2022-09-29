@@ -54,7 +54,7 @@ A tout moment, l’accès au parking pourra être invalidé. Cette interdiction 
 
 ## Lecture du Projet
 
-Vous pouvez exécuter le projet avec le fichier Proj_TP4_SM4.uproj sous mircoVision. Sinon vous pouvez ouvrir les programmes assembleur en fichier texte.
+Vous pouvez exécuter le projet avec le fichier Proj_TP4_SM4.uproj sous mircoVision. Sinon vous pouvez ouvrir les programmes assembleur en fichier texte. Le fichier main contient le programme principal dont le déroulement est expliquer dans le fichier organoigramme.pdf sous forme d'organigramme. Dans le fichier Lib
 
 *--English--*
 
