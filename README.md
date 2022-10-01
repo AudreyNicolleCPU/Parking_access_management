@@ -57,7 +57,7 @@ A tout moment, l’accès au parking pourra être invalidé. Cette interdiction 
 
 ## Lecture du Projet
 
-Vous pouvez exécuter le projet avec le fichier Proj_TP4_SM4.uproj sous mircoVision. Sinon vous pouvez ouvrir les programmes assembleur en fichier texte. Le fichier main contient le programme principal dont le déroulement est expliquer dans le fichier organoigramme.pdf sous forme d'organigramme. Dans le fichier Lib_VosSP_SM4.asm, il ya les sous-programmes utilisés dans le main. Ces sous-programes sont expliqués dasn le sujet et en commentaire dans les fichiers.
+Vous pouvez exécuter le projet avec le fichier Proj_TP4_SM4.uproj sous mircoVision. Sinon vous pouvez ouvrir les programmes assembleur en fichier texte. Le fichier main contient le programme principal dont le déroulement est expliquer dans le fichier organoigramme.pdf sous forme d'organigramme. Dans le fichier Lib_VosSP_SM4.asm, il y a les sous-programmes utilisés dans le main. Ces sous-programes sont expliqués daan le sujet, fichier **Sujet_projet_parking_ELN3.pdf** et en commentaire dans les fichiers.
 
 
 
@@ -117,4 +117,4 @@ At any time, access to the car park can be disabled. This access prohibition wil
 
 ## The Project
 
-You can run the project with the file Proj_TP4_SM4.uproj under mircoVision. Alternatively you can open the assembly programs as text files. The main file contains the main program, the flow of which is explained in the flowchart.pdf file as a flowchart. In the file Lib_VosSP_SM4.asm, there are the subroutines used in main. These subroutines are explained in the subject and commentary files.
+You can run the project with the file Proj_TP4_SM4.uproj under mircoVision. Alternatively you can open the assembly programs as text files. The main file contains the main program, the flow of which is explained in the flowchart.pdf file as a flowchart. In the file Lib_VosSP_SM4.asm, there are the subroutines used in main. These subroutines are explained in the subject in the file **Sujet_projet_parking_ELN3.pdf** and commentary files.
