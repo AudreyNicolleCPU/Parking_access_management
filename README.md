@@ -117,4 +117,4 @@ At any time, access to the car park can be disabled. This access prohibition wil
 
 ## The Project
 
-You can run the project with the file Proj_TP4_SM4.uproj under mircoVision. Alternatively you can open the assembly programs as text files. The main file contains the main program, the flow of which is explained in the flowchart.pdf file as a flowchart. In the file Lib_VosSP_SM4.asm, there are the subroutines used in main. These subroutines are explained in the subject in the file **Sujet_projet_parking_ELN3.pdf** and commentary files.
+You can run the project with the file Proj_TP4_SM4.uproj under mircoVision. Alternatively you can open the assembly programs as text files. The main file contains the main program, the flow of which is explained in the flowchart.pdf file as a flowchart. In the file Lib_VosSP_SM4.asm, there are the subroutines used in main. These subroutines are explained in the subject in french in the file **Sujet_projet_parking_ELN3.pdf** and commentary files.
